@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+
+//Components
+import CreateTodo from "./components/CreateTodo";
+import DisplayTodo from "./components/DisplayTodo";
+import store from "./store";
+/* 
+A provider basically notifies all components 
+in your react project that the store can be accessed by all of them.
+Basically like a context api passing all the data to all the components
+*/
+import { Provider } from "react-redux";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    //Now by wrapping this Provider, all the components can access the "Store"
+    <Provider store={store}>
+      <div className="App container">
+        <h2>Redux Todo App</h2>
+        <CreateTodo />
+        <DisplayTodo />
+      </div>
+    </Provider>
   );
 }
 
